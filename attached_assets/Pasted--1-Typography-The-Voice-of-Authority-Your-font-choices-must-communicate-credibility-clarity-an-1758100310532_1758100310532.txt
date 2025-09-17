@@ -1,0 +1,101 @@
+
+1. Typography: The Voice of Authority
+Your font choices must communicate credibility, clarity, and modern elegance. Avoid overly decorative fonts.
+
+1. Inter (Primary Font - Sans-Serif):
+
+Why: It's a supremely readable, professional, and neutral sans-serif font. It's the modern workhorse for UI and web design. It conveys trust and approachability without being sterile.
+
+Usage: Body text, navigation, buttons, paragraphs.
+
+2. Playfair Display (Secondary Font - Serif):
+
+Why: This font adds a touch of classic elegance, prestige, and high-end quality. It's perfect for your target audience (architects, designers, consultants) as it feels established and credible.
+
+Usage: Hero headlines, project titles, section headers to create beautiful contrast with Inter.
+
+3. JetBrains Mono (Tertiary Font - Monospace):
+
+Why: To subtly show your technical prowess. Using a clean monospace font for small details like dates, project specs, or code snippets signals attention to detail and technical credibility.
+
+Usage: Small technical details, labels, or for any displayed code.
+
+Pairing Example:
+
+H1 (Hero Text): Playfair Display
+
+H2/H3 (Subtitles): Inter (SemiBold)
+
+Body: Inter (Regular)
+
+Button: Inter (Medium)
+
+Project Date: JetBrains Mono (Light)
+
+2. Loading Animation & Micro-Interactions
+Avoid flashy, long animations. Your goal is to feel efficient and polished.
+
+Best Loading Animation: A smooth, subtle skeleton screen.
+
+What it is: Instead of a spinner, you show grey-shaded boxes that mimic the layout of the content that's about to load (e.g., where images, text lines will be).
+
+Why it's the best: It manages user expectation perfectly, reduces perceived loading time, feels incredibly modern and professional. It says, "This site is built with care and performance in mind."
+
+Best Micro-Interactions:
+
+Hover Effects on Project Cards: A subtle scale-up (transform: scale(1.02)) with a smooth shadow transition. This feels tactile and high-quality.
+
+Scroll-Triggered Animations: Use framer-motion or the Intersection Observer API to fade in project sections as the user scrolls. This creates a narrative flow.
+
+3. Color & Contrast: Building Trust
+Gradients: Subtle is key. Avoid loud, rainbow gradients.
+
+Best Use: A gentle, monochromatic gradient for backgrounds or buttons. Example: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) (light grey to soft blue-grey). This adds depth without overwhelming the content.
+
+For Accents: A subtle blue gradient (linear-gradient(135deg, #007CFB 0%, #0054D1 100%)) for primary buttons or links.
+
+Contrast:
+
+Primary Palette: Use a dark charcoal grey (#2D3748) for text on a pure white (#FFFFFF) or off-white (#F7FAFC) background. This provides maximum readability and a clean, editorial feel.
+
+Accent Color: A single, bold color for primary buttons and key interactive elements. A confident blue (#007CFB) or a deep emerald green (#047857) works perfectly. Use it sparingly to draw attention to CTAs like "View Case Study" or "Contact Me."
+
+4. Layout, Balance & Scrollable Projects
+The goal is a clean, grid-based, editorial layout that guides the user.
+
+Layout Philosophy: Asymmetrical balance with a strong grid. Think of it like a high-quality magazine.
+
+Project Grid Page:
+
+Use a masonry-style grid (like Pinterest) or a staggered grid where project cards are of varying heights. This creates visual interest and avoids a boring, rigid layout.
+
+Each Project Card should contain:
+
+A dominant, high-quality project image.
+
+The project title in Playfair Display.
+
+A short, one-line description of the client's goal.
+
+A category tag (e.g., "Architecture," "Branding") in a small monospace font.
+
+Implement a filter system so users can filter projects by "All," "Web," "Branding," etc. This is crucial for usability with many projects.
+
+5. Showcasing Tools & Skills (The "Why I'm Qualified" Section)
+Don't just list logos. Contextualize your skills.
+
+How to Present:
+
+Headline: "The Strategic Toolkit"
+
+Structure: Group them into categories.
+
+Strategy & Discovery: FigJam, Miro, Notion
+
+Design & Prototyping: Figma, Adobe Creative Suite (Photoshop, Illustrator)
+
+Development & Implementation: Webflow/Framer (if you use no-code), HTML/CSS/JS, WordPress
+
+Crucial Addition: Link to certificates from "official well-known places."
+
+Example: List "Google UX Design Certificate" or "Webflow University Certified" under the relevant tool. This immediately validates your knowledge from a trusted source, building immense trust with non-technical clients.
