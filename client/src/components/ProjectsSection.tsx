@@ -137,10 +137,60 @@ The redesigned e-commerce platform successfully elevated the custom furniture bu
     ]
   },
   {
-    id: "project-three", 
-    title: "Project Three",
-    description: "Coming soon - Project description will be added here.",
-    images: ["/api/placeholder/400/300"]
+    id: "the-architect",
+    title: "The Architect",
+    description: `**Client Profile:** An Architect (or any creative professional whose work is highly visual).
+
+**The Challenge:**
+The client, a talented architect, had an impressive body of work but their existing online portfolio was merely a disorganized gallery of images. It lacked a cohesive narrative, made it difficult for visitors to understand the scope and intent behind each project, and failed to adequately present the design process. The stunning visual quality of their work was diminished by a cluttered and unguided user experience.
+
+**My Solution:**
+I designed and developed a minimalist, image-centric portfolio that acts as a guided visual journey through the architect's projects, transforming a simple gallery into a compelling storytelling platform.
+
+**Minimalist, Full-Screen Design:** The website utilizes a clean, uncluttered layout where high-resolution imagery takes center stage. A full-screen hero image on the landing page immediately immerses the visitor in the architect's work.
+
+**Intuitive Navigation:** Simple, clear navigation (Projects, About, Contact) is unobtrusively placed, ensuring users can find what they need without distracting from the visuals.
+
+**Individual Project Storytelling:** Each project has its dedicated page, structured to tell a complete story:
+• Concept & Sketches: Showcasing initial ideas, hand-drawn sketches, and early massing models to reveal the creative process.
+• Material Palette & Inspiration: Presenting mood boards, material samples, and inspirational imagery that informed the design.
+• Final Result & Details: Featuring stunning photographs of the completed project, floor plans, and key technical details.
+
+**Meticulous Attention to Visuals:** Optimized all images for quality and fast loading speed across devices. Each image serves a purpose in the narrative.
+
+**Responsive Design:** Ensured a seamless and equally impactful experience on desktops, tablets, and mobile devices, making the work accessible to all users.
+
+**Results:**
+The new portfolio transformed the architect's online presence, effectively showcasing their work as a series of visual stories.
+
+• **Enhanced Client Engagement:** The structured project pages guided prospective clients through the design process, leading to more informed and engaged inquiries.
+
+• **Improved Presentation of Work:** The focus on high-quality visuals and narrative allowed the architect's unique design philosophy and meticulous attention to detail to shine through.
+
+• **Positive Feedback:** The architect received glowing feedback from clients and peers, praising the portfolio's elegance, clarity, and immersive experience.
+
+• **Increased Conversion Rate:** Potential clients could better understand the architect's capabilities and vision, leading to a higher conversion rate for initial consultations.
+
+**Skills Demonstrated:**
+• Visual Design: Creating an aesthetic, minimalist, and image-focused layout that prioritizes the architectural work.
+• User Experience (UX) Design: Crafting an intuitive user flow that guides visitors through project stories and information seamlessly.
+• Presentation & Storytelling: Structuring content to effectively communicate the conceptual development, design process, and final outcomes of each project.
+• Information Architecture: Organizing complex visual and textual information into easily digestible and aesthetically pleasing layouts.
+• Responsive Design: Ensuring optimal viewing and interaction across various devices and screen sizes.
+
+**Technologies Used:**
+• Design Tools: Adobe Photoshop, Illustrator, Figma (for mood boards, mockups, and UI design)
+• Development Platform: Webflow, custom HTML/CSS/JavaScript (for granular control over animations and image loading)
+• Image Optimization: Tools like TinyPNG, ImageOptim
+• Performance Monitoring: Google PageSpeed Insights`,
+    images: [
+      "/api/placeholder/800/600",
+      "/api/placeholder/800/600", 
+      "/api/placeholder/800/600",
+      "/api/placeholder/800/600",
+      "/api/placeholder/800/600",
+      "/api/placeholder/800/600"
+    ]
   },
   {
     id: "project-four",
@@ -243,22 +293,32 @@ function ProjectTile({ project, index }: ProjectTileProps) {
                   // Check if section contains bullet points
                   if (section.includes('•')) {
                     const lines = section.split('\n');
-                    const title = lines[0];
-                    const bullets = lines.slice(1);
+                    
+                    // Check if first line starts with bullet or is a header
+                    const firstLineIsBullet = lines[0].trim().startsWith('•');
+                    const title = firstLineIsBullet ? '' : lines[0];
+                    const bullets = firstLineIsBullet ? lines : lines.slice(1);
                     
                     return (
                       <div key={index} className="mb-6">
-                        <h3 className="text-lg font-semibold text-foreground mb-3">{title}</h3>
+                        {title && <h3 className="text-lg font-semibold text-foreground mb-3">{title}</h3>}
                         <ul className="space-y-2">
-                          {bullets.map((bullet, bulletIndex) => (
-                            <li key={bulletIndex} className="flex items-start gap-2">
-                              {bullet.includes('Lead Quality') && <TrendingUp className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
-                              {bullet.includes('Credibility') && <Users className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
-                              {bullet.includes('Engagement') && <BarChart3 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
-                              {bullet.includes('Brand Recognition') && <Target className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
-                              <span className="text-muted-foreground">{bullet.replace('•', '').trim()}</span>
-                            </li>
-                          ))}
+                          {bullets.map((bullet, bulletIndex) => {
+                            if (!bullet.trim().startsWith('•')) return null;
+                            return (
+                              <li key={bulletIndex} className="flex items-start gap-2">
+                                {bullet.includes('Lead Quality') && <TrendingUp className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
+                                {bullet.includes('Credibility') && <Users className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
+                                {bullet.includes('Engagement') && <BarChart3 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
+                                {bullet.includes('Brand Recognition') && <Target className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
+                                {bullet.includes('Enhanced') && <Users className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
+                                {bullet.includes('Improved') && <BarChart3 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
+                                {bullet.includes('Positive') && <Target className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
+                                {bullet.includes('Increased') && <TrendingUp className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
+                                <span className="text-muted-foreground">{bullet.replace('•', '').trim()}</span>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     );
