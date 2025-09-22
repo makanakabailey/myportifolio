@@ -83,6 +83,12 @@ The new website transformed the consultant's online presence into a powerful aut
     title: "Project Three",
     description: "Coming soon - Project description will be added here.",
     images: ["/api/placeholder/400/300"]
+  },
+  {
+    id: "project-four",
+    title: "Project Four",
+    description: "Coming soon - Project description will be added here.",
+    images: ["/api/placeholder/400/300"]
   }
 ];
 
@@ -94,6 +100,7 @@ interface ProjectTileProps {
 function ProjectTile({ project, index }: ProjectTileProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (project.images.length > 1) {
@@ -105,24 +112,31 @@ function ProjectTile({ project, index }: ProjectTileProps) {
   }, [project.images.length]);
 
   const getTileSize = (index: number) => {
-    switch (index) {
-      case 0:
-        return "col-span-2 row-span-3"; // Larger tile for Authority Builder
-      case 1:
-        return "col-span-1 row-span-2"; // Larger medium tile
-      case 2:
-        return "col-span-1 row-span-1"; // Regular tile
-      default:
-        return "col-span-1 row-span-1";
+    // Each tile should cover 1/4 of the section
+    return "col-span-1 row-span-1";
+  };
+
+  const handleMouseEnter = () => {
+    const timeout = setTimeout(() => {
+      setIsHovered(true);
+    }, 500); // 500ms delay for reduced sensitivity
+    setHoverTimeout(timeout);
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
     }
+    setIsHovered(false);
   };
 
   return (
     <div
-      className={`relative overflow-hidden rounded-xl cursor-pointer group ${getTileSize(index)} min-h-[200px]`}
+      className={`relative overflow-hidden cursor-pointer group ${getTileSize(index)} min-h-[200px]`}
       style={{ backgroundColor: "#1e40af" }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Simplified Background Image */}
       <img
@@ -146,24 +160,27 @@ function ProjectTile({ project, index }: ProjectTileProps) {
 
       {/* Hover Description Tooltip - Full Page Overlay */}
       {isHovered && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-start justify-center p-4 z-50 overflow-hidden">
-          <div className="bg-white rounded-lg w-full max-w-4xl h-full flex flex-col">
+        <div 
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-start justify-center p-4 z-50 overflow-hidden"
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className="bg-background rounded-lg w-full max-w-4xl h-full flex flex-col border border-border">
             {/* Header */}
-            <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-900">{project.title}</h2>
+            <div className="p-6 border-b border-border flex justify-between items-center bg-card">
+              <h2 className="text-2xl font-bold text-foreground">{project.title}</h2>
               <div className="flex gap-2">
-                <SiFigma className="w-6 h-6 text-purple-600" />
-                <SiAdobexd className="w-6 h-6 text-pink-600" />
-                <SiWordpress className="w-6 h-6 text-blue-600" />
-                <SiGoogleanalytics className="w-6 h-6 text-orange-600" />
-                <Calendar className="w-6 h-6 text-blue-500" />
-                <Database className="w-6 h-6 text-green-600" />
+                <SiFigma className="w-6 h-6 text-primary" />
+                <SiAdobexd className="w-6 h-6 text-accent" />
+                <SiWordpress className="w-6 h-6 text-primary" />
+                <SiGoogleanalytics className="w-6 h-6 text-accent" />
+                <Calendar className="w-6 h-6 text-primary" />
+                <Database className="w-6 h-6 text-accent" />
               </div>
             </div>
             
             {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto p-6 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              <div className="prose prose-lg max-w-none">
+            <div className="flex-1 overflow-y-auto p-6 scrollbar-hide bg-background" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <div className="prose prose-lg max-w-none text-foreground">
                 {project.description.split('\n\n').map((section, index) => {
                   // Check if section contains bullet points
                   if (section.includes('•')) {
@@ -173,15 +190,15 @@ function ProjectTile({ project, index }: ProjectTileProps) {
                     
                     return (
                       <div key={index} className="mb-6">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3">{title}</h3>
+                        <h3 className="text-lg font-semibold text-foreground mb-3">{title}</h3>
                         <ul className="space-y-2">
                           {bullets.map((bullet, bulletIndex) => (
                             <li key={bulletIndex} className="flex items-start gap-2">
-                              {bullet.includes('Lead Quality') && <TrendingUp className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />}
-                              {bullet.includes('Credibility') && <Users className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />}
-                              {bullet.includes('Engagement') && <BarChart3 className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />}
-                              {bullet.includes('Brand Recognition') && <Target className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />}
-                              <span className="text-gray-700">{bullet.replace('•', '').trim()}</span>
+                              {bullet.includes('Lead Quality') && <TrendingUp className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
+                              {bullet.includes('Credibility') && <Users className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
+                              {bullet.includes('Engagement') && <BarChart3 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
+                              {bullet.includes('Brand Recognition') && <Target className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
+                              <span className="text-muted-foreground">{bullet.replace('•', '').trim()}</span>
                             </li>
                           ))}
                         </ul>
@@ -195,7 +212,7 @@ function ProjectTile({ project, index }: ProjectTileProps) {
                     return (
                       <div key={index} className="mb-4">
                         <p 
-                          className="text-gray-700 leading-relaxed" 
+                          className="text-muted-foreground leading-relaxed" 
                           dangerouslySetInnerHTML={{ __html: formatted }}
                         />
                       </div>
@@ -203,7 +220,7 @@ function ProjectTile({ project, index }: ProjectTileProps) {
                   }
                   
                   return (
-                    <p key={index} className="text-gray-700 leading-relaxed mb-4">
+                    <p key={index} className="text-muted-foreground leading-relaxed mb-4">
                       {section}
                     </p>
                   );
@@ -271,7 +288,7 @@ export default function ProjectsSection() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-3 grid-rows-3 gap-6 h-[800px]"
+          className="grid grid-cols-4 grid-rows-1 gap-0 h-[400px]"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
