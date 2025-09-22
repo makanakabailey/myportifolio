@@ -41,59 +41,6 @@ interface FeaturedProject {
 
 const projectsData: FeaturedProject[] = [
   {
-    id: "authority-builder",
-    title: "The Authority Builder",
-    description: `**Client Profile:** Marketing Consultant (or Coach) specializing in helping experts establish credibility and attract premium clients.
-
-**The Challenge:**
-The client, a highly skilled marketing consultant, struggled with a website that failed to communicate her unique value proposition. It looked generic, lacked a strong narrative, and didn't effectively convert visitors into qualified leads. Her business relies heavily on trust and authority, but her online presence wasn't reflecting her expertise, leading to missed opportunities with high-value clients.
-
-**My Solution:**
-I designed and developed a comprehensive website experience focused on building authority, fostering trust, and generating high-quality leads.
-
-**Powerful Homepage Design:** Crafted a compelling hero section with a benefit-driven headline ("Unlock Your Expert Influence: Attract Premium Clients") and a clear sub-headline, immediately communicating value. A prominent Call to Action ("Book a Free Discovery Call") was strategically placed to guide visitor action.
-
-**"About/Story" Page:** Developed a rich narrative on the "About" page, detailing the consultant's journey, philosophy, and the impact she creates. This personal connection humanizes the brand and builds rapport.
-
-**Detailed Case Studies:** Created a dedicated section for in-depth case studies, each following the "Problem → Solution → Result" framework. This demonstrated her expertise through tangible outcomes and data, showcasing her ability to deliver real transformations.
-
-**Strategic Testimonial Integration:** Testimonials from satisfied clients were seamlessly integrated throughout the site – on the homepage, services pages, and case study pages – providing constant social proof and reinforcing credibility.
-
-**Clear High-Value Offer:** Emphasized a singular, high-value Call to Action across the site ("Book a Free Discovery Call") to streamline the lead generation process and attract serious inquiries.
-
-**Results:**
-The new website transformed the consultant's online presence into a powerful authority-building tool. Within the first three months of launch:
-
-• **Increased Lead Quality:** A 75% increase in qualified discovery call bookings, leading to higher conversion rates for premium clients.
-
-• **Enhanced Credibility:** Client feedback indicated a significant improvement in perception, with prospects consistently mentioning the professionalism and clear value presented by the website.
-
-• **Improved Engagement:** Website analytics showed a 40% increase in average session duration and a lower bounce rate, indicating visitors were more engaged with the content and finding the information they needed.
-
-• **Stronger Brand Recognition:** The cohesive design and compelling messaging established the consultant as a recognized authority in her niche.
-
-**Skills Demonstrated:**
-• Copywriting: Crafting persuasive, benefit-driven headlines, sub-headlines, and calls to action.
-• Storytelling: Developing an engaging "About/Story" narrative and structuring compelling case studies.
-• Lead Generation Strategy: Designing a user flow optimized for converting visitors into qualified leads through strategic CTAs and content placement.
-• UI/UX Design: Creating an intuitive, aesthetically pleasing, and professional website layout.
-• Information Architecture: Organizing content logically to ensure ease of navigation and information retrieval.
-
-**Technologies Used:**
-• Design Tools: Figma, Adobe XD (for wireframing and UI design)
-• Development Platform: WordPress (or Webflow/Squarespace, depending on client preference and complexity)
-• Analytics: Google Analytics
-• CRM Integration: HubSpot, Calendly (for discovery call scheduling)`,
-    images: [
-      authorityBuilderHome,
-      authorityBuilder2,
-      authorityBuilder3,
-      authorityBuilder4,
-      authorityBuilder5,
-      authorityBuilder7
-    ]
-  },
-  {
     id: "master-craftsman",
     title: "The Master Craftsman",
     description: `**Client Profile:** A Custom Furniture Builder (Artisan/Maker) selling physical, high-value goods online.
@@ -147,6 +94,59 @@ The redesigned e-commerce platform successfully elevated the custom furniture bu
       craftsman4,
       craftsman5,
       craftsman6
+    ]
+  },
+  {
+    id: "authority-builder",
+    title: "The Authority Builder",
+    description: `**Client Profile:** Marketing Consultant (or Coach) specializing in helping experts establish credibility and attract premium clients.
+
+**The Challenge:**
+The client, a highly skilled marketing consultant, struggled with a website that failed to communicate her unique value proposition. It looked generic, lacked a strong narrative, and didn't effectively convert visitors into qualified leads. Her business relies heavily on trust and authority, but her online presence wasn't reflecting her expertise, leading to missed opportunities with high-value clients.
+
+**My Solution:**
+I designed and developed a comprehensive website experience focused on building authority, fostering trust, and generating high-quality leads.
+
+**Powerful Homepage Design:** Crafted a compelling hero section with a benefit-driven headline ("Unlock Your Expert Influence: Attract Premium Clients") and a clear sub-headline, immediately communicating value. A prominent Call to Action ("Book a Free Discovery Call") was strategically placed to guide visitor action.
+
+**"About/Story" Page:** Developed a rich narrative on the "About" page, detailing the consultant's journey, philosophy, and the impact she creates. This personal connection humanizes the brand and builds rapport.
+
+**Detailed Case Studies:** Created a dedicated section for in-depth case studies, each following the "Problem → Solution → Result" framework. This demonstrated her expertise through tangible outcomes and data, showcasing her ability to deliver real transformations.
+
+**Strategic Testimonial Integration:** Testimonials from satisfied clients were seamlessly integrated throughout the site – on the homepage, services pages, and case study pages – providing constant social proof and reinforcing credibility.
+
+**Clear High-Value Offer:** Emphasized a singular, high-value Call to Action across the site ("Book a Free Discovery Call") to streamline the lead generation process and attract serious inquiries.
+
+**Results:**
+The new website transformed the consultant's online presence into a powerful authority-building tool. Within the first three months of launch:
+
+• **Increased Lead Quality:** A 75% increase in qualified discovery call bookings, leading to higher conversion rates for premium clients.
+
+• **Enhanced Credibility:** Client feedback indicated a significant improvement in perception, with prospects consistently mentioning the professionalism and clear value presented by the website.
+
+• **Improved Engagement:** Website analytics showed a 40% increase in average session duration and a lower bounce rate, indicating visitors were more engaged with the content and finding the information they needed.
+
+• **Stronger Brand Recognition:** The cohesive design and compelling messaging established the consultant as a recognized authority in her niche.
+
+**Skills Demonstrated:**
+• Copywriting: Crafting persuasive, benefit-driven headlines, sub-headlines, and calls to action.
+• Storytelling: Developing an engaging "About/Story" narrative and structuring compelling case studies.
+• Lead Generation Strategy: Designing a user flow optimized for converting visitors into qualified leads through strategic CTAs and content placement.
+• UI/UX Design: Creating an intuitive, aesthetically pleasing, and professional website layout.
+• Information Architecture: Organizing content logically to ensure ease of navigation and information retrieval.
+
+**Technologies Used:**
+• Design Tools: Figma, Adobe XD (for wireframing and UI design)
+• Development Platform: WordPress (or Webflow/Squarespace, depending on client preference and complexity)
+• Analytics: Google Analytics
+• CRM Integration: HubSpot, Calendly (for discovery call scheduling)`,
+    images: [
+      authorityBuilderHome,
+      authorityBuilder2,
+      authorityBuilder3,
+      authorityBuilder4,
+      authorityBuilder5,
+      authorityBuilder7
     ]
   },
   {
@@ -281,7 +281,11 @@ function ProjectTile({ project, index, onProjectClick }: ProjectTileProps) {
   }, [project.images.length]);
 
   const getTileSize = (index: number) => {
-    // Each tile should cover 1/4 of the section
+    // Master Craftsman (index 0) takes full width and is 3x bigger
+    if (index === 0) {
+      return "col-span-3 row-span-2";
+    }
+    // Other tiles are smaller and side by side
     return "col-span-1 row-span-1";
   };
 
@@ -291,7 +295,7 @@ function ProjectTile({ project, index, onProjectClick }: ProjectTileProps) {
 
   return (
     <div
-      className={`relative overflow-hidden cursor-pointer group ${getTileSize(index)} min-h-[200px]`}
+      className={`relative overflow-hidden cursor-pointer group ${getTileSize(index)} ${index === 0 ? 'min-h-[300px]' : 'min-h-[150px]'}`}
       style={{ backgroundColor: "#1e40af" }}
       onClick={handleClick}
     >
@@ -363,7 +367,7 @@ export default function ProjectsSection({ onProjectClick }: ProjectsSectionProps
   };
 
   return (
-    <section id="projects" className="py-20 px-6 bg-gray-50/50">
+    <section id="projects" className="py-12 px-6 bg-gray-50/50 mb-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -381,7 +385,7 @@ export default function ProjectsSection({ onProjectClick }: ProjectsSectionProps
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-4 grid-rows-1 gap-0 h-[400px]"
+          className="grid grid-cols-3 gap-2 auto-rows-min"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
