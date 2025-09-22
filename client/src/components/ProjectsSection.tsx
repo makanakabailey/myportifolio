@@ -25,6 +25,13 @@ import architect4 from "@assets/architect-4.png";
 import architect5 from "@assets/architect-5.png";
 import architect6 from "@assets/architect-6.png";
 
+// Import Results Machine images
+import resultsMachine1 from "@assets/result machine 1_1758572807461.png";
+import resultsMachine2 from "@assets/result machine 2_1758572807462.png";
+import resultsMachine3 from "@assets/results machine3_1758572807462.png";
+import resultsMachine4 from "@assets/results machine 4_1758572807462.png";
+import resultsMachine5 from "@assets/results machine 5_1758572807461.png";
+
 interface FeaturedProject {
   id: string;
   title: string;
@@ -243,11 +250,11 @@ The new results-focused website transformed the agency's market position and sig
 • Analytics Integration: Chart.js for interactive charts, Google Analytics for performance tracking
 • CRM Integration: HubSpot for lead management and automated follow-up sequences`,
     images: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80",
-      "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80",
-      "https://images.unsplash.com/photo-1434626881859-194d67b2b86f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80",
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80"
+      resultsMachine1,
+      resultsMachine2,
+      resultsMachine3,
+      resultsMachine4,
+      resultsMachine5
     ]
   }
 ];
