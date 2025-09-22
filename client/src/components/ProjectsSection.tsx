@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
+// Import Authority Builder images
+import authorityBuilderHome from "@assets/authority-builder-home.png";
+import authorityBuilder2 from "@assets/authority-builder-2.png";
+import authorityBuilder3 from "@assets/authority-builder-3.png";
+import authorityBuilder4 from "@assets/authority-builder-4.png";
+import authorityBuilder5 from "@assets/authority-builder-5.png";
+import authorityBuilder7 from "@assets/authority-builder-7.png";
+
 interface Project {
   id: string;
   title: string;
@@ -14,12 +22,12 @@ const projectsData: Project[] = [
     title: "The Authority Builder",
     description: "A comprehensive website experience focused on building authority, fostering trust, and generating high-quality leads for marketing consultants. Achieved 75% increase in qualified discovery call bookings and 40% increase in engagement.",
     images: [
-      "/attached_assets/authority builder home page_1758531719877.png",
-      "/attached_assets/#2 authority builder_1758531719876.png",
-      "/attached_assets/#3 authority builder_1758531719876.png",
-      "/attached_assets/#4 authority builder_1758531719876.png",
-      "/attached_assets/#5 authority builder_1758531719875.png",
-      "/attached_assets/#7 authoritybuilder_1758531719875.png"
+      authorityBuilderHome,
+      authorityBuilder2,
+      authorityBuilder3,
+      authorityBuilder4,
+      authorityBuilder5,
+      authorityBuilder7
     ]
   },
   {
