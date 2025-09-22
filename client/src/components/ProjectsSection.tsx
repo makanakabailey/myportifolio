@@ -199,10 +199,56 @@ The new portfolio transformed the architect's online presence, effectively showc
     ]
   },
   {
-    id: "project-four",
-    title: "Project Four",
-    description: "Coming soon - Project description will be added here.",
-    images: ["/api/placeholder/400/300"]
+    id: "results-machine",
+    title: "The Results Machine",
+    description: `**Client Profile:** Marketing Agency (or Performance-focused Service Provider) specializing in delivering measurable ROI for enterprise clients.
+
+**The Challenge:**
+The client, a data-driven marketing agency, struggled to differentiate themselves in a saturated market filled with agencies making grand promises without proof. Their existing website was text-heavy, lacked visual impact, and failed to effectively communicate their track record of delivering quantifiable results. Enterprise clients needed concrete evidence of ROI capabilities before making significant investment decisions.
+
+**My Solution:**
+I designed and developed a results-focused digital experience that transforms abstract performance metrics into compelling visual narratives, positioning the agency as the definitive choice for ROI-conscious enterprise clients.
+
+**Data-Driven Homepage:** Created a dynamic dashboard-style homepage featuring real-time performance metrics, interactive charts, and sliding testimonials that immediately communicate the agency's results-oriented approach.
+
+**Interactive Case Studies:** Developed immersive case study presentations with before/after comparisons, interactive ROI calculators, and detailed performance dashboards that allow prospects to explore actual client transformations.
+
+**Performance Metrics Integration:** Seamlessly integrated live analytics and performance tracking throughout the site, showcasing ongoing client successes and reinforcing the agency's commitment to measurable outcomes.
+
+**Client Success Stories:** Crafted compelling narrative-driven case studies following the "Challenge → Strategy → Results" framework, each supported by concrete data, testimonials, and visual proof of performance improvements.
+
+**Strategic Lead Magnification:** Implemented high-value lead magnets including ROI calculators, performance audits, and exclusive industry reports to attract qualified enterprise prospects.
+
+**Results:**
+The new results-focused website transformed the agency's market position and significantly accelerated their growth trajectory.
+
+• **Enterprise Contract Success:** Secured 5 enterprise contracts worth $2M+ in the first quarter post-launch, representing a 400% increase in qualified leads.
+
+• **Enhanced Credibility:** Industry recognition and media coverage positioned the agency as thought leaders in performance marketing.
+
+• **Improved Conversion Metrics:** Website analytics showed a 350% increase in qualified lead generation and a 40% improvement in consultation-to-contract conversion rates.
+
+• **Market Differentiation:** Clear positioning as the "results agency" distinguished them from competitors focused solely on creative or strategy services.
+
+**Skills Demonstrated:**
+• Performance Marketing: Designing systems to showcase measurable business outcomes and ROI metrics.
+• Data Visualization: Creating compelling visual representations of complex performance data and analytics.
+• Conversion Strategy: Developing lead generation systems optimized for high-value enterprise clients.
+• Interactive Design: Building engaging user experiences with calculators, dashboards, and dynamic content.
+• Strategic Positioning: Establishing clear market differentiation through results-focused messaging and proof points.
+
+**Technologies Used:**
+• Design Tools: Figma, Adobe Creative Suite (for dashboard mockups and data visualization design)
+• Development Platform: Webflow with custom code integration for interactive elements
+• Analytics Integration: Chart.js for interactive charts, Google Analytics for performance tracking
+• CRM Integration: HubSpot for lead management and automated follow-up sequences`,
+    images: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80",
+      "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80",
+      "https://images.unsplash.com/photo-1434626881859-194d67b2b86f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900&q=80"
+    ]
   }
 ];
 
