@@ -112,24 +112,18 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
-  grid-auto-rows: minmax(200px, auto);
+  grid-auto-rows: minmax(280px, 280px);
 }
 
-.bento-item:nth-child(1) { 
-  grid-row: span 2; 
-}
-
-.bento-item:nth-child(3) { 
-  grid-row: span 2; 
-}
-
-.bento-item:nth-child(5) { 
-  grid-row: span 2; 
+.bento-item { 
+  grid-row: span 1;
+  height: 280px;
 }
 
 @media (max-width: 768px) {
   .bento-item { 
     grid-row: span 1 !important; 
+    height: 280px;
   }
   
   .bento-grid {

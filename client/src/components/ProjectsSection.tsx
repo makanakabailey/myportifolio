@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { SiFigma, SiAdobexd, SiWordpress, SiGoogleanalytics } from "react-icons/si";
-import { Calendar, Database, BarChart3, Users, Target, TrendingUp } from "lucide-react";
 
 // Import Authority Builder images
 import authorityBuilderHome from "@assets/authority-builder-home.png";
@@ -27,14 +25,14 @@ import architect4 from "@assets/architect-4.png";
 import architect5 from "@assets/architect-5.png";
 import architect6 from "@assets/architect-6.png";
 
-interface Project {
+interface FeaturedProject {
   id: string;
   title: string;
   description: string;
   images: string[];
 }
 
-const projectsData: Project[] = [
+const projectsData: FeaturedProject[] = [
   {
     id: "authority-builder",
     title: "The Authority Builder",
@@ -209,14 +207,13 @@ The new portfolio transformed the architect's online presence, effectively showc
 ];
 
 interface ProjectTileProps {
-  project: Project;
+  project: FeaturedProject;
   index: number;
+  onProjectClick: (projectId: string) => void;
 }
 
-function ProjectTile({ project, index }: ProjectTileProps) {
+function ProjectTile({ project, index, onProjectClick }: ProjectTileProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (project.images.length > 1) {
@@ -232,27 +229,15 @@ function ProjectTile({ project, index }: ProjectTileProps) {
     return "col-span-1 row-span-1";
   };
 
-  const handleMouseEnter = () => {
-    const timeout = setTimeout(() => {
-      setIsHovered(true);
-    }, 500); // 500ms delay for reduced sensitivity
-    setHoverTimeout(timeout);
-  };
-
-  const handleMouseLeave = () => {
-    if (hoverTimeout) {
-      clearTimeout(hoverTimeout);
-      setHoverTimeout(null);
-    }
-    setIsHovered(false);
+  const handleClick = () => {
+    onProjectClick(project.id);
   };
 
   return (
     <div
       className={`relative overflow-hidden cursor-pointer group ${getTileSize(index)} min-h-[200px]`}
       style={{ backgroundColor: "#1e40af" }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
     >
       {/* Simplified Background Image */}
       <img
@@ -274,88 +259,6 @@ function ProjectTile({ project, index }: ProjectTileProps) {
         </h3>
       </div>
 
-      {/* Hover Description Tooltip - Full Page Overlay */}
-      {isHovered && (
-        <div 
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-start justify-center p-4 z-50 overflow-hidden"
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="bg-background rounded-lg w-full max-w-4xl h-full flex flex-col border border-border">
-            {/* Header */}
-            <div className="p-6 border-b border-border flex justify-between items-center bg-card">
-              <h2 className="text-2xl font-bold text-foreground">{project.title}</h2>
-              <div className="flex gap-2">
-                <SiFigma className="w-6 h-6 text-primary" />
-                <SiAdobexd className="w-6 h-6 text-accent" />
-                <SiWordpress className="w-6 h-6 text-primary" />
-                <SiGoogleanalytics className="w-6 h-6 text-accent" />
-                <Calendar className="w-6 h-6 text-primary" />
-                <Database className="w-6 h-6 text-accent" />
-              </div>
-            </div>
-            
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto p-6 scrollbar-hide bg-background" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              <div className="prose prose-lg max-w-none text-foreground">
-                {project.description.split('\n\n').map((section, index) => {
-                  // Check if section contains bullet points
-                  if (section.includes('•')) {
-                    const lines = section.split('\n');
-                    
-                    // Check if first line starts with bullet or is a header
-                    const firstLineIsBullet = lines[0].trim().startsWith('•');
-                    const title = firstLineIsBullet ? '' : lines[0];
-                    const bullets = firstLineIsBullet ? lines : lines.slice(1);
-                    
-                    return (
-                      <div key={index} className="mb-6">
-                        {title && <h3 className="text-lg font-semibold text-foreground mb-3">{title}</h3>}
-                        <ul className="space-y-2">
-                          {bullets.map((bullet, bulletIndex) => {
-                            if (!bullet.trim().startsWith('•')) return null;
-                            return (
-                              <li key={bulletIndex} className="flex items-start gap-2">
-                                {bullet.includes('Lead Quality') && <TrendingUp className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
-                                {bullet.includes('Credibility') && <Users className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
-                                {bullet.includes('Engagement') && <BarChart3 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
-                                {bullet.includes('Brand Recognition') && <Target className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
-                                {bullet.includes('Enhanced') && <Users className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
-                                {bullet.includes('Improved') && <BarChart3 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
-                                {bullet.includes('Positive') && <Target className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />}
-                                {bullet.includes('Increased') && <TrendingUp className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />}
-                                <span className="text-muted-foreground">{bullet.replace('•', '').trim()}</span>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    );
-                  }
-                  
-                  // Handle bold headers
-                  if (section.includes('**')) {
-                    const formatted = section.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                    return (
-                      <div key={index} className="mb-4">
-                        <p 
-                          className="text-muted-foreground leading-relaxed" 
-                          dangerouslySetInnerHTML={{ __html: formatted }}
-                        />
-                      </div>
-                    );
-                  }
-                  
-                  return (
-                    <p key={index} className="text-muted-foreground leading-relaxed mb-4">
-                      {section}
-                    </p>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Slideshow indicators */}
       {project.images.length > 1 && (
@@ -374,7 +277,11 @@ function ProjectTile({ project, index }: ProjectTileProps) {
   );
 }
 
-export default function ProjectsSection() {
+interface ProjectsSectionProps {
+  onProjectClick: (projectId: string) => void;
+}
+
+export default function ProjectsSection({ onProjectClick }: ProjectsSectionProps) {
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -423,7 +330,7 @@ export default function ProjectsSection() {
         >
           {projectsData.map((project, index) => (
             <motion.div key={project.id} variants={itemVariants} data-testid={`project-tile-${index}`}>
-              <ProjectTile project={project} index={index} />
+              <ProjectTile project={project} index={index} onProjectClick={onProjectClick} />
             </motion.div>
           ))}
         </motion.div>

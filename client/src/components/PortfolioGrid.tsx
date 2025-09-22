@@ -36,10 +36,10 @@ export default function PortfolioGrid({ onProjectClick }: PortfolioGridProps) {
           className="mb-16"
         >
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-accent mb-4" data-testid="portfolio-title">
-            Selected Work
+            Who I Help
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl" data-testid="portfolio-description">
-            Strategic portfolio designs that transform how professionals present their expertise
+            Examples of professionals I create portfolios for and the unique challenges they face
           </p>
         </motion.div>
 

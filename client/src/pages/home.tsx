@@ -31,7 +31,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <FeaturedPlatforms />
-      <ProjectsSection />
+      <ProjectsSection onProjectClick={handleProjectClick} />
       <PortfolioGrid onProjectClick={handleProjectClick} />
       <AboutSection />
       <ContactSection />
