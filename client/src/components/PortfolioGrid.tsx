@@ -77,9 +77,7 @@ export default function PortfolioGrid({ onProjectClick }: PortfolioGridProps) {
                   <h3 className="font-serif text-xl font-semibold text-accent mt-2 mb-3">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {project.description}
-                  </p>
+                  {/* Description removed here so it only appears in the modal after click */}
                   <div className="flex flex-wrap gap-2">
                     {project.tags.slice(0, 2).map((tag, tagIndex) => (
                       <span

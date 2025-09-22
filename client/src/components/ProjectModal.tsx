@@ -12,6 +12,7 @@ interface ProjectModalProps {
 export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModalProps) {
   const project: Project | undefined = projectId ? projectData[projectId] : undefined;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
   // Reset image index when modal opens or project changes
   useEffect(() => {
@@ -19,6 +20,17 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
       setCurrentImageIndex(0);
     }
   }, [isOpen, projectId]);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [isOpen, onClose]);
 
   // Auto-slide images like in tiles
   useEffect(() => {
@@ -53,7 +65,7 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
         >
           {/* Central modal with white background and 90% opacity */}
           <motion.div
-            className="absolute inset-x-16 top-20 bottom-20 bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden"
+            className="absolute inset-x-16 top-20 bottom-20 bg-white/90 rounded-2xl overflow-hidden border border-gray-300"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
@@ -81,15 +93,14 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
                     key={currentImageIndex}
                     src={project.images[currentImageIndex]}
                     alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                    className="w-full h-full object-contain object-center"
+                    className="w-full h-full object-contain object-center [image-rendering:high-quality]"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                     data-testid="modal-carousel-image"
                   />
                   
-                  {/* Opaque overlay for empty space */}
-                  <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+                  {/* Remove overlay so slides are fully visible (0% overlay opacity) */}
                   
                   {/* Navigation arrows */}
                   {project.images.length > 1 && (
