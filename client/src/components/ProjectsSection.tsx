@@ -285,18 +285,22 @@ function ProjectTile({ project, index, onProjectClick }: ProjectTileProps) {
       style={{ backgroundColor: "#1e40af" }}
       onClick={handleClick}
     >
-      {/* Simplified Background Image */}
+      {/* Enhanced Background Image with better quality and brightness */}
       <img
         src={project.images[currentImageIndex]}
         alt={`${project.title} slide ${currentImageIndex + 1}`}
-        className="absolute inset-0 w-full h-full object-cover opacity-80"
+        className="absolute inset-0 w-full h-full object-cover brightness-110 contrast-105 saturate-110 transition-all duration-300 group-hover:scale-105"
+        style={{
+          imageRendering: 'auto',
+          filter: 'brightness(1.1) contrast(1.05) saturate(1.1)'
+        }}
         onError={(e) => {
           e.currentTarget.style.display = 'none';
         }}
       />
 
-      {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Lighter overlay for better text readability while maintaining image brightness */}
+      <div className="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-all duration-300" />
 
       {/* Project Title */}
       <div className="absolute top-4 left-4 z-10">
