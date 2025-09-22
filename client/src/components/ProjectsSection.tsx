@@ -11,13 +11,21 @@ import authorityBuilder4 from "@assets/authority-builder-4.png";
 import authorityBuilder5 from "@assets/authority-builder-5.png";
 import authorityBuilder7 from "@assets/authority-builder-7.png";
 
-// Craftsman images - using placeholders for now due to special characters in filenames
-const craftsman1 = "/api/placeholder/800/600";
-const craftsman2 = "/api/placeholder/800/600";
-const craftsman3 = "/api/placeholder/800/600";
-const craftsman4 = "/api/placeholder/800/600";
-const craftsman5 = "/api/placeholder/800/600";
-const craftsman7 = "/api/placeholder/800/600";
+// Import Craftsman images
+import craftsman1 from "@assets/craftsman-1.png";
+import craftsman2 from "@assets/craftsman-2.png";
+import craftsman3 from "@assets/craftsman-3.png";
+import craftsman4 from "@assets/craftsman-4.png";
+import craftsman5 from "@assets/craftsman-5.png";
+import craftsman6 from "@assets/craftsman-6.png";
+
+// Import Architect images
+import architect1 from "@assets/architect-1.png";
+import architect2 from "@assets/architect-2.png";
+import architect3 from "@assets/architect-3.png";
+import architect4 from "@assets/architect-4.png";
+import architect5 from "@assets/architect-5.png";
+import architect6 from "@assets/architect-6.png";
 
 interface Project {
   id: string;
@@ -133,7 +141,7 @@ The redesigned e-commerce platform successfully elevated the custom furniture bu
       craftsman3,
       craftsman4,
       craftsman5,
-      craftsman7
+      craftsman6
     ]
   },
   {
@@ -184,12 +192,12 @@ The new portfolio transformed the architect's online presence, effectively showc
 • Image Optimization: Tools like TinyPNG, ImageOptim
 • Performance Monitoring: Google PageSpeed Insights`,
     images: [
-      "/api/placeholder/800/600",
-      "/api/placeholder/800/600", 
-      "/api/placeholder/800/600",
-      "/api/placeholder/800/600",
-      "/api/placeholder/800/600",
-      "/api/placeholder/800/600"
+      architect1,
+      architect2,
+      architect3,
+      architect4,
+      architect5,
+      architect6
     ]
   },
   {
