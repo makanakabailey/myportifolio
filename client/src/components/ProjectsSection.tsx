@@ -11,6 +11,14 @@ import authorityBuilder4 from "@assets/authority-builder-4.png";
 import authorityBuilder5 from "@assets/authority-builder-5.png";
 import authorityBuilder7 from "@assets/authority-builder-7.png";
 
+// Craftsman images - using placeholders for now due to special characters in filenames
+const craftsman1 = "/api/placeholder/800/600";
+const craftsman2 = "/api/placeholder/800/600";
+const craftsman3 = "/api/placeholder/800/600";
+const craftsman4 = "/api/placeholder/800/600";
+const craftsman5 = "/api/placeholder/800/600";
+const craftsman7 = "/api/placeholder/800/600";
+
 interface Project {
   id: string;
   title: string;
@@ -73,10 +81,60 @@ The new website transformed the consultant's online presence into a powerful aut
     ]
   },
   {
-    id: "project-two",
-    title: "Project Two",
-    description: "Coming soon - Project description will be added here.",
-    images: ["/api/placeholder/400/300"]
+    id: "master-craftsman",
+    title: "The Master Craftsman",
+    description: `**Client Profile:** A Custom Furniture Builder (Artisan/Maker) selling physical, high-value goods online.
+
+**The Challenge:**
+The client, an exceptionally talented custom furniture builder, produced exquisite, handcrafted pieces. However, their existing online presence failed to convey the premium craftsmanship and unique story behind their work. Lacking high-quality photography, transparent policies, and a compelling brand narrative, their products struggled to justify their premium pricing against mass-produced alternatives on platforms like Etsy or Amazon, hindering sales and growth.
+
+**My Solution:**
+I designed and implemented a bespoke e-commerce experience that champions craftsmanship, builds trust, and optimizes for conversion, positioning the client as a high-end artisan rather than just another online seller.
+
+**E-commerce Setup with Visual Focus:** Created a robust e-commerce platform where every page prioritizes high-quality product photography and, where applicable, video. This immersive visual experience allows products to speak for themselves.
+
+**Immersive Product Pages:** Each product page features:
+• A scrollable gallery of numerous high-resolution images showing the product from multiple angles, in different settings, and highlighting intricate details.
+• Descriptions that blend features with the narrative, emphasizing materials and unique design elements.
+• Integrated video (or video thumbnails) showcasing the crafting process, adding depth and authenticity.
+
+**"About the Maker" Section:** Developed a dedicated page telling the story of the artisan, their philosophy, and the meticulous process behind their work. This section includes evocative workshop photography and concise text blocks, building a personal connection and justifying premium pricing.
+
+**Transparent Policies:** Clearly articulated shipping details, return policies, and care instructions are easily accessible. This transparency builds crucial trust, especially for high-value purchases.
+
+**Email List Integration:** Seamlessly integrated an email subscription opt-in throughout the site (e.g., footer, pop-ups, dedicated page) to capture leads for new product launches, exclusive collections, and brand storytelling, fostering a loyal customer base.
+
+**Results:**
+The redesigned e-commerce platform successfully elevated the custom furniture builder's brand and significantly improved their online sales performance.
+
+• **Increased Conversion Rate:** A 60% increase in online sales conversions, as customers felt more confident and connected to the products.
+
+• **Enhanced Brand Perception:** The client was firmly positioned as a premium artisan, capable of justifying higher price points compared to competitors.
+
+• **Stronger Customer Loyalty:** The "About the Maker" section and consistent brand storytelling led to more engaged customers and repeat purchases.
+
+• **Reduced Customer Service Inquiries:** Clear policies and comprehensive product information led to a 30% decrease in basic customer service questions, freeing up the artisan's time.
+
+**Skills Demonstrated:**
+• E-commerce Strategy: Designing a user journey optimized for product discovery, trust-building, and purchase completion.
+• Branding: Crafting a cohesive visual identity and narrative that conveys craftsmanship, quality, and heritage.
+• Conversion Optimization: Implementing design elements and content strategies to maximize sales and lead generation.
+• Visual Design: Curating and presenting high-quality imagery and video to highlight product features and aesthetics.
+• User Experience (UX) Design: Creating an intuitive and enjoyable shopping experience with clear navigation and information hierarchy.
+
+**Technologies Used:**
+• E-commerce Platform: Shopify (or WooCommerce for WordPress)
+• Design Tools: Adobe Photoshop, Lightroom (for image editing), Figma (for UI/UX design)
+• Email Marketing: Mailchimp, Klaviyo
+• Video Hosting: Vimeo, YouTube (embedded)`,
+    images: [
+      craftsman1,
+      craftsman2,
+      craftsman3,
+      craftsman4,
+      craftsman5,
+      craftsman7
+    ]
   },
   {
     id: "project-three", 
