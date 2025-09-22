@@ -76,30 +76,21 @@ function ProjectTile({ project, index }: ProjectTileProps) {
   };
 
   return (
-    <motion.div
-      className={`relative overflow-hidden rounded-xl cursor-pointer group ${getTileSize(index)}`}
+    <div
+      className={`relative overflow-hidden rounded-xl cursor-pointer group ${getTileSize(index)} min-h-[200px]`}
       style={{ backgroundColor: "#1e40af" }}
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Image Slideshow */}
-      <div className="absolute inset-0">
-        {project.images.map((image, imgIndex) => (
-          <motion.img
-            key={imgIndex}
-            src={image}
-            alt={`${project.title} slide ${imgIndex + 1}`}
-            className="absolute inset-0 w-full h-full object-cover"
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: imgIndex === currentImageIndex ? 0.8 : 0 
-            }}
-            transition={{ duration: 0.5 }}
-          />
-        ))}
-      </div>
+      {/* Simplified Background Image */}
+      <img
+        src={project.images[currentImageIndex]}
+        alt={`${project.title} slide ${currentImageIndex + 1}`}
+        className="absolute inset-0 w-full h-full object-cover opacity-80"
+        onError={(e) => {
+          e.currentTarget.style.display = 'none';
+        }}
+      />
 
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/30" />
@@ -112,20 +103,16 @@ function ProjectTile({ project, index }: ProjectTileProps) {
       </div>
 
       {/* Hover Description Tooltip */}
-      <motion.div
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6 z-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-        style={{ pointerEvents: isHovered ? 'auto' : 'none' }}
-      >
-        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 max-h-full overflow-y-auto">
-          <h4 className="font-semibold text-gray-900 mb-2">{project.title}</h4>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            {project.description}
-          </p>
+      {isHovered && (
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6 z-20">
+          <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 max-h-full overflow-y-auto">
+            <h4 className="font-semibold text-gray-900 mb-2">{project.title}</h4>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              {project.description}
+            </p>
+          </div>
         </div>
-      </motion.div>
+      )}
 
       {/* Slideshow indicators */}
       {project.images.length > 1 && (
@@ -140,11 +127,12 @@ function ProjectTile({ project, index }: ProjectTileProps) {
           ))}
         </div>
       )}
-    </motion.div>
+    </div>
   );
 }
 
 export default function ProjectsSection() {
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -188,9 +176,10 @@ export default function ProjectsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
+          data-testid="projects-grid"
         >
           {projectsData.map((project, index) => (
-            <motion.div key={project.id} variants={itemVariants}>
+            <motion.div key={project.id} variants={itemVariants} data-testid={`project-tile-${index}`}>
               <ProjectTile project={project} index={index} />
             </motion.div>
           ))}
