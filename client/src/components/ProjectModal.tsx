@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { projectData, type Project } from "@/lib/projectData";
+import { useState, useEffect } from "react";
 
 interface ProjectModalProps {
   isOpen: boolean;
@@ -10,96 +11,177 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModalProps) {
   const project: Project | undefined = projectId ? projectData[projectId] : undefined;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Reset image index when modal opens or project changes
+  useEffect(() => {
+    if (isOpen && projectId) {
+      setCurrentImageIndex(0);
+    }
+  }, [isOpen, projectId]);
 
   if (!project) return null;
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+  };
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black/50 backdrop-blur-custom z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
           data-testid="project-modal"
         >
+          {/* Central modal with white background and 10% opacity */}
           <motion.div
-            className="bg-card rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            className="absolute inset-x-8 top-16 bottom-16 bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
             onClick={(e) => e.stopPropagation()}
             data-testid="modal-content"
           >
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h3 className="font-serif text-2xl font-bold text-accent mb-2" data-testid="modal-title">
-                    {project.title}
-                  </h3>
-                  <p className="font-mono text-sm text-muted-foreground uppercase tracking-wide" data-testid="modal-category">
-                    {project.category}
-                  </p>
+            {/* Blinking circular X button at top center */}
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+              <motion.button
+                onClick={onClose}
+                className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                animate={{ opacity: [1, 0.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                data-testid="modal-close"
+              >
+                <X className="w-6 h-6" />
+              </motion.button>
+            </div>
+
+            <div className="h-full overflow-y-auto p-8 pt-20">
+              {/* Image carousel at the top */}
+              <div className="relative mb-8">
+                <div className="relative h-80 rounded-xl overflow-hidden">
+                  <motion.img
+                    key={currentImageIndex}
+                    src={project.images[currentImageIndex]}
+                    alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                    className="w-full h-full object-cover"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    data-testid="modal-carousel-image"
+                  />
+                  
+                  {/* Navigation arrows */}
+                  {project.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                        data-testid="carousel-prev"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                        data-testid="carousel-next"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
+                  )}
+                  
+                  {/* Dot indicators */}
+                  {project.images.length > 1 && (
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                      {project.images.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-colors ${
+                            index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                          }`}
+                          data-testid={`carousel-dot-${index}`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <button
-                  onClick={onClose}
-                  className="text-muted-foreground hover:text-accent transition-colors p-2"
-                  data-testid="modal-close"
-                >
-                  <X className="w-6 h-6" />
-                </button>
               </div>
-              
-              <div className="space-y-6" data-testid="modal-body">
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-64 object-cover rounded-lg"
+
+              {/* Project details */}
+              <div className="space-y-8">
+                {/* Title and category */}
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  data-testid="modal-image"
-                />
-                
-                <div className="grid md:grid-cols-2 gap-8">
+                  className="text-center"
+                >
+                  <h3 className="font-serif text-3xl font-bold text-white mb-2" data-testid="modal-title">
+                    {project.title}
+                  </h3>
+                  <p className="font-mono text-sm text-white/80 uppercase tracking-wide" data-testid="modal-category">
+                    {project.category}
+                  </p>
+                </motion.div>
+
+                {/* Main content grid */}
+                <div className="grid md:grid-cols-2 gap-12">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
+                    className="space-y-6"
                   >
-                    <h4 className="font-semibold text-accent mb-3">The Challenge</h4>
-                    <p className="text-muted-foreground mb-6" data-testid="modal-problem">
-                      {project.problem}
-                    </p>
+                    <div>
+                      <h4 className="font-semibold text-white text-lg mb-3">The Challenge</h4>
+                      <p className="text-white/90 leading-relaxed" data-testid="modal-problem">
+                        {project.problem}
+                      </p>
+                    </div>
                     
-                    <h4 className="font-semibold text-accent mb-3">The Solution</h4>
-                    <p className="text-muted-foreground" data-testid="modal-solution">
-                      {project.solution}
-                    </p>
+                    <div>
+                      <h4 className="font-semibold text-white text-lg mb-3">The Solution</h4>
+                      <p className="text-white/90 leading-relaxed" data-testid="modal-solution">
+                        {project.solution}
+                      </p>
+                    </div>
                   </motion.div>
                   
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 }}
+                    className="space-y-6"
                   >
-                    <h4 className="font-semibold text-accent mb-3">The Result</h4>
-                    <p className="text-muted-foreground mb-6" data-testid="modal-result">
-                      {project.result}
-                    </p>
+                    <div>
+                      <h4 className="font-semibold text-white text-lg mb-3">The Result</h4>
+                      <p className="text-white/90 leading-relaxed" data-testid="modal-result">
+                        {project.result}
+                      </p>
+                    </div>
                     
-                    <h4 className="font-semibold text-accent mb-3">Technologies</h4>
-                    <div className="flex flex-wrap gap-2" data-testid="modal-technologies">
-                      {project.technologies.map((tech, index) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm"
-                          data-testid={`modal-tech-${index}`}
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                    <div>
+                      <h4 className="font-semibold text-white text-lg mb-3">Technologies</h4>
+                      <div className="flex flex-wrap gap-2" data-testid="modal-technologies">
+                        {project.technologies.map((tech, index) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm"
+                            data-testid={`modal-tech-${index}`}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </motion.div>
                 </div>
