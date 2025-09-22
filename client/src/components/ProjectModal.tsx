@@ -41,9 +41,9 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
           onClick={onClose}
           data-testid="project-modal"
         >
-          {/* Central modal with white background and 10% opacity */}
+          {/* Central modal with white background and 90% opacity */}
           <motion.div
-            className="absolute inset-x-8 top-16 bottom-16 bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden"
+            className="absolute inset-x-16 top-20 bottom-20 bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
@@ -54,7 +54,7 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
               <motion.button
                 onClick={onClose}
-                className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                className="w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-gray-700/80 transition-colors"
                 animate={{ opacity: [1, 0.5, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
                 data-testid="modal-close"
@@ -69,28 +69,31 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
                 <div className="relative h-80 rounded-xl overflow-hidden">
                   <motion.img
                     key={currentImageIndex}
-                    src={project.images[currentImageIndex]}
+                    src={project.images[currentImageIndex].replace('w=1200&h=900', 'w=1600&h=1200&fit=crop&q=80')}
                     alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                     data-testid="modal-carousel-image"
                   />
                   
+                  {/* 0% opacity overlay on slides */}
+                  <div className="absolute inset-0 bg-transparent pointer-events-none" />
+                  
                   {/* Navigation arrows */}
                   {project.images.length > 1 && (
                     <>
                       <button
                         onClick={prevImage}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
                         data-testid="carousel-prev"
                       >
                         <ChevronLeft className="w-5 h-5" />
                       </button>
                       <button
                         onClick={nextImage}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
                         data-testid="carousel-next"
                       >
                         <ChevronRight className="w-5 h-5" />
@@ -105,7 +108,7 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
                         <button
                           key={index}
                           onClick={() => setCurrentImageIndex(index)}
-                          className={`w-2 h-2 rounded-full transition-colors ${
+                          className={`w-3 h-3 rounded-full transition-colors ${
                             index === currentImageIndex ? 'bg-white' : 'bg-white/50'
                           }`}
                           data-testid={`carousel-dot-${index}`}
@@ -125,10 +128,10 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
                   transition={{ delay: 0.1 }}
                   className="text-center"
                 >
-                  <h3 className="font-serif text-3xl font-bold text-white mb-2" data-testid="modal-title">
+                  <h3 className="font-serif text-3xl font-bold text-gray-800 mb-2" data-testid="modal-title">
                     {project.title}
                   </h3>
-                  <p className="font-mono text-sm text-white/80 uppercase tracking-wide" data-testid="modal-category">
+                  <p className="font-mono text-sm text-gray-600 uppercase tracking-wide" data-testid="modal-category">
                     {project.category}
                   </p>
                 </motion.div>
@@ -142,15 +145,15 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
                     className="space-y-6"
                   >
                     <div>
-                      <h4 className="font-semibold text-white text-lg mb-3">The Challenge</h4>
-                      <p className="text-white/90 leading-relaxed" data-testid="modal-problem">
+                      <h4 className="font-semibold text-gray-800 text-lg mb-3">The Challenge</h4>
+                      <p className="text-gray-700 leading-relaxed" data-testid="modal-problem">
                         {project.problem}
                       </p>
                     </div>
                     
                     <div>
-                      <h4 className="font-semibold text-white text-lg mb-3">The Solution</h4>
-                      <p className="text-white/90 leading-relaxed" data-testid="modal-solution">
+                      <h4 className="font-semibold text-gray-800 text-lg mb-3">The Solution</h4>
+                      <p className="text-gray-700 leading-relaxed" data-testid="modal-solution">
                         {project.solution}
                       </p>
                     </div>
@@ -163,19 +166,19 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
                     className="space-y-6"
                   >
                     <div>
-                      <h4 className="font-semibold text-white text-lg mb-3">The Result</h4>
-                      <p className="text-white/90 leading-relaxed" data-testid="modal-result">
+                      <h4 className="font-semibold text-gray-800 text-lg mb-3">The Result</h4>
+                      <p className="text-gray-700 leading-relaxed" data-testid="modal-result">
                         {project.result}
                       </p>
                     </div>
                     
                     <div>
-                      <h4 className="font-semibold text-white text-lg mb-3">Technologies</h4>
+                      <h4 className="font-semibold text-gray-800 text-lg mb-3">Technologies</h4>
                       <div className="flex flex-wrap gap-2" data-testid="modal-technologies">
                         {project.technologies.map((tech, index) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm"
+                            className="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm"
                             data-testid={`modal-tech-${index}`}
                           >
                             {tech}
