@@ -20,6 +20,16 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
     }
   }, [isOpen, projectId]);
 
+  // Auto-slide images like in tiles
+  useEffect(() => {
+    if (isOpen && project && project.images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [isOpen, project]);
+
   if (!project) return null;
 
   const nextImage = () => {
@@ -66,20 +76,20 @@ export default function ProjectModal({ isOpen, onClose, projectId }: ProjectModa
             <div className="h-full overflow-y-auto p-8 pt-20">
               {/* Image carousel at the top */}
               <div className="relative mb-8">
-                <div className="relative h-80 rounded-xl overflow-hidden">
+                <div className="relative h-80 rounded-xl overflow-hidden bg-black">
                   <motion.img
                     key={currentImageIndex}
-                    src={project.images[currentImageIndex].replace('w=1200&h=900', 'w=1600&h=1200&fit=crop&q=80')}
+                    src={project.images[currentImageIndex]}
                     alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-contain object-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                     data-testid="modal-carousel-image"
                   />
                   
-                  {/* 0% opacity overlay on slides */}
-                  <div className="absolute inset-0 bg-transparent pointer-events-none" />
+                  {/* Opaque overlay for empty space */}
+                  <div className="absolute inset-0 bg-black/20 pointer-events-none" />
                   
                   {/* Navigation arrows */}
                   {project.images.length > 1 && (

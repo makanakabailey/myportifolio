@@ -112,18 +112,18 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
-  grid-auto-rows: minmax(280px, 280px);
+  grid-auto-rows: minmax(360px, 360px);
 }
 
 .bento-item { 
   grid-row: span 1;
-  height: 280px;
+  height: 360px;
 }
 
 @media (max-width: 768px) {
   .bento-item { 
     grid-row: span 1 !important; 
-    height: 280px;
+    height: 360px;
   }
   
   .bento-grid {

@@ -1,3 +1,25 @@
+// Featured Projects assets
+import authorityBuilderHome from "@assets/authority-builder-home.png";
+import authorityBuilder2 from "@assets/authority-builder-2.png";
+import authorityBuilder3 from "@assets/authority-builder-3.png";
+import authorityBuilder4 from "@assets/authority-builder-4.png";
+import authorityBuilder5 from "@assets/authority-builder-5.png";
+import authorityBuilder7 from "@assets/authority-builder-7.png";
+
+import craftsman1 from "@assets/craftsman-1.png";
+import craftsman2 from "@assets/craftsman-2.png";
+import craftsman3 from "@assets/craftsman-3.png";
+import craftsman4 from "@assets/craftsman-4.png";
+import craftsman5 from "@assets/craftsman-5.png";
+import craftsman6 from "@assets/craftsman-6.png";
+
+import architect1 from "@assets/architect-1.png";
+import architect2 from "@assets/architect-2.png";
+import architect3 from "@assets/architect-3.png";
+import architect4 from "@assets/architect-4.png";
+import architect5 from "@assets/architect-5.png";
+import architect6 from "@assets/architect-6.png";
+
 export interface Project {
   id: string;
   title: string;
@@ -141,11 +163,14 @@ export const projectData: Record<string, Project> = {
     solution: 'I designed and developed a comprehensive website experience focused on building authority, fostering trust, and generating high-quality leads with powerful homepage design, strategic testimonial integration, and clear high-value offers.',
     result: '75% increase in qualified discovery call bookings, 40% increase in average session duration, enhanced credibility with improved client perception, and stronger brand recognition as a recognized authority.',
     technologies: ['Figma', 'Adobe XD', 'WordPress', 'Google Analytics', 'HubSpot', 'Calendly'],
-    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900',
+    image: authorityBuilderHome,
     images: [
-      'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900',
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900',
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900'
+      authorityBuilderHome,
+      authorityBuilder2,
+      authorityBuilder3,
+      authorityBuilder4,
+      authorityBuilder5,
+      authorityBuilder7
     ],
     tags: ['Web Design', 'Lead Generation', 'Authority Building']
   },
@@ -158,11 +183,14 @@ export const projectData: Record<string, Project> = {
     solution: 'I designed and implemented a bespoke e-commerce experience that champions craftsmanship, builds trust, and optimizes for conversion, positioning the client as a high-end artisan rather than just another online seller.',
     result: '60% increase in online sales conversions, enhanced brand perception as a premium artisan, stronger customer loyalty with repeat purchases, and 30% decrease in customer service inquiries.',
     technologies: ['Shopify', 'Adobe Photoshop', 'Lightroom', 'Figma', 'Mailchimp', 'Klaviyo'],
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900',
+    image: craftsman1,
     images: [
-      'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900',
-      'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900',
-      'https://images.unsplash.com/photo-1610701596007-11502861dcfa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900'
+      craftsman1,
+      craftsman2,
+      craftsman3,
+      craftsman4,
+      craftsman5,
+      craftsman6
     ],
     tags: ['E-commerce', 'Branding', 'Craftsmanship']
   },
@@ -175,11 +203,14 @@ export const projectData: Record<string, Project> = {
     solution: 'I designed and developed a minimalist, image-centric portfolio that acts as a guided visual journey through the architect\'s projects, transforming a simple gallery into a compelling storytelling platform.',
     result: 'Enhanced client engagement with structured project pages, improved presentation of work with focus on high-quality visuals, positive feedback from clients and peers, and increased conversion rate for initial consultations.',
     technologies: ['Adobe Photoshop', 'Illustrator', 'Figma', 'Webflow', 'TinyPNG', 'ImageOptim'],
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900',
+    image: architect1,
     images: [
-      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=900'
+      architect1,
+      architect2,
+      architect3,
+      architect4,
+      architect5,
+      architect6
     ],
     tags: ['Portfolio Design', 'Visual Storytelling', 'Architecture']
   }
