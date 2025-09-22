@@ -3,6 +3,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import FeaturedPlatforms from "@/components/FeaturedPlatforms";
+import ProjectsSection from "@/components/ProjectsSection";
 import PortfolioGrid from "@/components/PortfolioGrid";
 import ProjectModal from "@/components/ProjectModal";
 import AboutSection from "@/components/AboutSection";
@@ -30,6 +31,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <FeaturedPlatforms />
+      <ProjectsSection />
       <PortfolioGrid onProjectClick={handleProjectClick} />
       <AboutSection />
       <ContactSection />
